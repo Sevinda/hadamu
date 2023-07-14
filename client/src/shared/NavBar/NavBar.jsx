@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const NavBar = () => {
@@ -13,6 +13,7 @@ const NavBar = () => {
   ];
 
   const [hamburgerStatus, setHamburgerStatus] = useState(false);
+  const location = useLocation();
 
   const handleCollapse = () => {
     setHamburgerStatus(!hamburgerStatus);
@@ -33,7 +34,11 @@ const NavBar = () => {
 
         <LinksContainer__div>
           {links.map((link, index) => (
-            <Link key={index} to={link.url}>
+            <Link
+              key={index}
+              to={link.url}
+              className={location.pathname === link.url ? "active" : ""}
+            >
               {link.label}
             </Link>
           ))}
@@ -43,7 +48,12 @@ const NavBar = () => {
       <HamburgerLinksContainer__div>
         {hamburgerStatus &&
           links.map((link, index) => (
-            <Link key={index} to={link.url} onClick={handleCollapse}>
+            <Link
+              key={index}
+              to={link.url}
+              className={location.pathname === link.url ? "active" : ""}
+              onClick={handleCollapse}
+            >
               {link.label}
             </Link>
           ))}
@@ -84,11 +94,12 @@ const HamburgerIcon__img = styled.img`
 
 const LinksContainer__div = styled.div`
   display: none;
+  margin-right: 15px;
 
   a {
     color: var(--color-anchor-navbar);
     text-decoration: none;
-    margin: 10px;
+    padding: 10px;
     transition: all 0.3s;
   }
 
@@ -96,8 +107,18 @@ const LinksContainer__div = styled.div`
     color: var(--color-anchor-navbar-hover);
   }
 
+  a.active {
+    color: var(--color-white);
+    background-color: var(--color-black);
+    border: 1px solid var(--color-white);
+    border-radius: 5px;
+  }
+
   @media screen and (min-width: 880px) {
     display: block;
+    height: 65px;
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -111,10 +132,18 @@ const HamburgerLinksContainer__div = styled.div`
   a {
     margin-inline: 10px;
     padding-block: 10px;
+    padding-left: 10px;
     text-decoration: none;
     color: var(--color-anchor-navbar);
     transition: all 0.3s;
     border-bottom: 1px solid var(--color-hamburger-border);
+  }
+
+  a.active {
+    color: var(--color-white);
+    background-color: var(--color-black);
+    border: 1px solid var(--color-white);
+    border-radius: 5px;
   }
 
   a:hover {
