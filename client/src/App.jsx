@@ -8,6 +8,7 @@ import WorldNews from "./pages/WorldNews";
 import Production from "./pages/Production";
 import Video from "./pages/Video";
 import Opinion from "./pages/Opinion";
+import Footer from "./shared/Footer/Footer";
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
         <Route path="/video" element={<Video />} />
         <Route path="/opinion" element={<Opinion />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 };

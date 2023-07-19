@@ -27,7 +27,6 @@
 body {
   margin: auto;
   max-width: 1100px;
-  height: 500vh;
   color: var(--color-body);
   line-height: 1.5;
 }

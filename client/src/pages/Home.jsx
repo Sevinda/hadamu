@@ -1,19 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
 import Hero from "../components/HomePage/Hero";
 import MainNews from "../components/HomePage/MainNews";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Home = () => {
+  const [loading, setLoading] = useState(false);
+  const [mainNews, setMainNews] = useState([]);
+
+  useEffect(() => {
+    const fetchMainNews = async () => {
+      setLoading(true);
+      const response = await fetch(
+        "http://localhost:8080/api/v1/get/newspapers"
+      );
+      const data = await response.json();
+      setMainNews(data);
+      setLoading(false);
+    };
+
+    fetchMainNews();
+  }, []);
+
   return (
     <>
-      <Hero />
-      <MainNews
-        topic="Train Accident"
-        summary="14 people died and 40 injured in a train accident in India."
-        photo="/images/train_accident.webp"
-        description="Tragedy struck in India as a devastating train accident claimed the lives of 14 individuals, while leaving 40 others injured. The incident, which unfolded with a sudden and profound impact, has sent shockwaves throughout the nation. As authorities and emergency responders work tirelessly to unravel the cause of the accident, communities are left grieving the loss of their loved ones. This catastrophic event serves as a stark reminder of the importance of prioritizing safety measures and ensuring the well-being of passengers on railways. The injured victims are receiving immediate medical attention, with hopes for their swift recovery. As the nation mourns this heartbreaking incident, questions arise regarding the steps that can be taken to prevent such tragedies in the future, emphasizing the need for continuous vigilance and enhancements in rail safety protocols."
-      />
+      {loading ? (
+        <LoaderContainer__div>
+          <MoonLoader color="#fff" size={40} speedMultiplier={1} />
+        </LoaderContainer__div>
+      ) : (
+        <>
+          <Hero />
+          <MainNews mainNews={mainNews} />
+        </>
+      )}
     </>
   );
 };
 
 export default Home;
+
+const LoaderContainer__div = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+`;

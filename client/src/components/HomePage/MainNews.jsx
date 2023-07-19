@@ -1,21 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const MainNews = () => {
-  const [mainNews, setMainNews] = useState([]);
-
-  useEffect(() => {
-    const fetchMainNews = async () => {
-      const response = await fetch(
-        "http://localhost:8080/api/v1/get/newspapers"
-      );
-      const data = await response.json();
-      setMainNews(data);
-    };
-
-    fetchMainNews();
-  }, []);
-
+const MainNews = ({ mainNews }) => {
   return (
     <>
       {mainNews.map((news) => (
@@ -26,6 +13,10 @@ const MainNews = () => {
           </TextContent__div>
           <Picture__img src={news.photo} alt={news.topic} />
           <Description__p>{news.description}</Description__p>
+          {/* TODO: Create the correct link for the button */}
+          <Link to="/world-news">
+            <ReadMore__button>Read More</ReadMore__button>
+          </Link>
         </Container__div>
       ))}
     </>
@@ -75,5 +66,25 @@ const Description__p = styled.p`
     column-count: 2;
     column-rule: 1px solid lightblue;
     column-gap: 40px;
+  }
+`;
+
+const ReadMore__button = styled.button`
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background-color: white;
+  color: #595959;
+  border: 1px solid #595959;
+  height: 45px;
+  width: 120px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #595959;
+    color: white;
   }
 `;
