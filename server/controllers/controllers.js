@@ -10,6 +10,16 @@ const getAllNewspapers = async (req, res) => {
   }
 };
 
+// GET A NEWSPAPER DATA
+const getNewspaper = async (req, res) => {
+  try {
+    const newspaper = await MainNews.findById(req.params.id);
+    res.status(200).json(newspaper);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // POST A NEWSPAPER
 const postNewspaper = async (req, res) => {
   try {
@@ -45,4 +55,4 @@ const deleteNewspaper = async (req, res) => {
 };
 
 // EXPORT THE CONTROLLER FUNCTIONS
-export { getAllNewspapers, postNewspaper, deleteNewspaper };
+export { getAllNewspapers, postNewspaper, deleteNewspaper, getNewspaper };

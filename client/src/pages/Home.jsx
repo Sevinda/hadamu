@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import MoonLoader from "react-spinners/MoonLoader";
 
 import Hero from "../components/HomePage/Hero";
 import MainNews from "../components/HomePage/MainNews";
-import MoonLoader from "react-spinners/MoonLoader";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <>
       {loading ? (
-        <LoaderContainer__div>
+        <LoaderContainer__div className="loader">
           <MoonLoader color="#fff" size={40} speedMultiplier={1} />
         </LoaderContainer__div>
       ) : (
@@ -41,14 +41,4 @@ const Home = () => {
 
 export default Home;
 
-const LoaderContainer__div = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
+const LoaderContainer__div = styled.div``;

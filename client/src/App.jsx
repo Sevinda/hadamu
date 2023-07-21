@@ -9,6 +9,7 @@ import Production from "./pages/Production";
 import Video from "./pages/Video";
 import Opinion from "./pages/Opinion";
 import Footer from "./shared/Footer/Footer";
+import ReadMore from "./pages/ReadMore";
 
 const App = () => {
   return (
@@ -17,11 +18,14 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/world-news" element={<WorldNews />} />
-        <Route path="/production" element={<Production />} />
-        <Route path="/video" element={<Video />} />
-        <Route path="/opinion" element={<Opinion />} />
+        <Route path="news" element={<News />} />
+        <Route path="world-news" element={<WorldNews />} />
+        <Route path="production" element={<Production />} />
+        <Route path="video" element={<Video />} />
+        <Route path="opinion" element={<Opinion />} />
+        <Route path="read-more">
+          <Route path=":id" element={<ReadMore />} />
+        </Route>
       </Routes>
 
       <Footer />

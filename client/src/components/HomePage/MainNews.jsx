@@ -3,6 +3,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MainNews = ({ mainNews }) => {
+  const descriptionCount = (description) => {
+    const words = description.split(" ");
+    if (words.length > 100) {
+      return words.slice(0, 100).join(" ") + "...";
+    } else {
+      return description;
+    }
+  };
+
   return (
     <>
       {mainNews.map((news) => (
@@ -11,10 +20,9 @@ const MainNews = ({ mainNews }) => {
             <h3>{news.topic}</h3>
             <p>{news.summary}</p>
           </TextContent__div>
-          <Picture__img src={news.photo} alt={news.topic} />
-          <Description__p>{news.description}</Description__p>
-          {/* TODO: Create the correct link for the button */}
-          <Link to="/world-news">
+          <Picture__img src={news.photo} alt={news.topic} loading="lazy" />
+          <Description__p>{descriptionCount(news.description)}</Description__p>
+          <Link to={`read-more/${news._id}`}>
             <ReadMore__button>Read More</ReadMore__button>
           </Link>
         </Container__div>
@@ -26,7 +34,11 @@ const MainNews = ({ mainNews }) => {
 export default MainNews;
 
 const Container__div = styled.div`
-  margin-top: 20px;
+  margin-block: 20px 40px;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  padding: 15px;
+  margin-inline: 10px;
 `;
 
 const TextContent__div = styled.div`
@@ -34,7 +46,7 @@ const TextContent__div = styled.div`
   flex-direction: column;
   text-align: center;
   margin-bottom: 10px;
-  padding-inline: 8px;
+  padding-inline: 12px;
 
   h3 {
     margin-bottom: 5px;
@@ -55,7 +67,7 @@ const Picture__img = styled.img`
   width: 100%;
   height: 45vh;
   object-fit: cover;
-  box-shadow: 0 0 0.5rem 0.5rem var(--color-box-shadow);
+  border-radius: 10px;
 `;
 
 const Description__p = styled.p`
