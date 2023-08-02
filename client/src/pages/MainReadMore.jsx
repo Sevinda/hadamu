@@ -14,7 +14,7 @@ const MainReadMore = () => {
     const fetchTheNews = async () => {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:8080/api/v1/get/newspaper/${id}`
+        `https://hadamu.onrender.com/api/v1/get/newspaper/${id}`
       );
       const data = await response.json();
       setMainNews(data);

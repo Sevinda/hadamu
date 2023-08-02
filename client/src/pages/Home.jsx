@@ -13,7 +13,6 @@ const Home = () => {
     const fetchMainNews = async () => {
       setLoading(true);
       const response = await fetch(
-        // "http://localhost:8080/api/v1/get/newspapers"
         "https://hadamu.onrender.com/api/v1/get/newspapers"
       );
       const data = await response.json();
