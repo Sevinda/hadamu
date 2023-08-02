@@ -4,6 +4,7 @@ import { MainNews } from "../models/MainNewsModel.js";
 const getAllNewspapers = async (req, res) => {
   try {
     const newspapers = await MainNews.find();
+    newspapers.sort((a, b) => new Date(b.date) - new Date(a.date));
     res.status(200).json(newspapers);
   } catch (error) {
     res.status(500).json({ message: error.message });

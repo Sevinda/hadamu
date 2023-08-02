@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import NavBar from "./shared/NavBar/NavBar";
@@ -9,9 +9,12 @@ import Production from "./pages/Production";
 import Video from "./pages/Video";
 import Opinion from "./pages/Opinion";
 import Footer from "./shared/Footer/Footer";
-import ReadMore from "./pages/ReadMore";
+import MainReadMore from "./pages/MainReadMore";
+import Error404 from "./pages/Error404";
 
 const App = () => {
+  const [is404Page, setIs404Page] = useState(false);
+
   return (
     <BrowserRouter>
       <NavBar />
@@ -23,9 +26,10 @@ const App = () => {
         <Route path="production" element={<Production />} />
         <Route path="video" element={<Video />} />
         <Route path="opinion" element={<Opinion />} />
-        <Route path="read-more">
-          <Route path=":id" element={<ReadMore />} />
+        <Route path="main/read-more">
+          <Route path=":id" element={<MainReadMore />} />
         </Route>
+        <Route path="*" element={<Error404 />} />
       </Routes>
 
       <Footer />

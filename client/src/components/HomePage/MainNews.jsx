@@ -22,7 +22,7 @@ const MainNews = ({ mainNews }) => {
           </TextContent__div>
           <Picture__img src={news.photo} alt={news.topic} loading="lazy" />
           <Description__p>{descriptionCount(news.description)}</Description__p>
-          <Link to={`read-more/${news._id}`}>
+          <Link to={`main/read-more/${news._id}`}>
             <ReadMore__button>Read More</ReadMore__button>
           </Link>
         </Container__div>

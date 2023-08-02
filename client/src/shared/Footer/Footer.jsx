@@ -6,8 +6,6 @@ const Footer = () => {
     { label: "Link1", url: "#" },
     { label: "Link2", url: "#" },
     { label: "Link3", url: "#" },
-    { label: "Link4", url: "#" },
-    { label: "Link5", url: "#" },
   ];
 
   return (
@@ -60,7 +58,8 @@ export default Footer;
 
 const FooterContainer = styled.div`
   background-color: var(--color-background-navbar);
-  padding: 40px;
+  padding: 0 40px 10px;
+  margin-top: 40px;
 `;
 
 const FooterContent = styled.div`

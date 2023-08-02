@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 
-const ReadMore = () => {
+const MainReadMore = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [mainNews, setMainNews] = useState([]);
@@ -43,7 +44,12 @@ const ReadMore = () => {
             />
             <Description__p>{mainNews.description}</Description__p>
             <Link to={"/"}>
-              <Back__button>{`<- Go Back`}</Back__button>
+              <Back__button>
+                <Arrow__span>
+                  <BiArrowBack />
+                </Arrow__span>{" "}
+                {`Go Back`}
+              </Back__button>
             </Link>
           </Container__div>
         </>
@@ -52,7 +58,7 @@ const ReadMore = () => {
   );
 };
 
-export default ReadMore;
+export default MainReadMore;
 
 const LoaderContainer__div = styled.div``;
 
@@ -111,9 +117,22 @@ const Back__button = styled.button`
   font-size: 1.8rem;
   cursor: pointer;
   transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-color: #595959;
     color: white;
   }
+`;
+
+const Arrow__span = styled.span`
+  font-size: 2.7rem;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
