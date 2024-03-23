@@ -16,7 +16,7 @@ jobs:
           node-version: 18.18.2  # Replace with your desired Node.js version
 
       - name: Install dependencies
-        run: npm install  # Or yarn install, if you use Yarn
+        run: npm i  # Or yarn install, if you use Yarn
 
       - name: Build Electron app
         run: npm run build  # Replace with your build command (e.g., electron-builder)
